@@ -1,0 +1,62 @@
+h1,
+h2,
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+body {
+  background-color: #f5efe8;
+}
+h1 {
+  font-size: 38px;
+  color: #f6378f;
+  font-weight: 600px;
+}
+h2 {
+  color: #8ea5eb;
+  font-size: 22px;
+  line-height: 12px;
+}
+
+.current-temperature {
+  font-weight: 500;
+  font-size: 52px;
+  color: #f6378f;
+  line-height: 1;
+  vertical-align: top;
+}
+.units {
+  font-size: smaller;
+  vertical-align: super;
+}
+.wind-humidity {
+  vertical-align: middle;
+  line-height: 24px;
+  list-style-type: none;
+  list-style-position: outside;
+}
+.current-weather {
+  color: #8ea5eb;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.current-icon {
+  vertical-align: top;
+}
+.col {
+  text-align: center;
+}
+.date,
+.temperature {
+  font-size: 16px;
+  line-height: 40px;
+}
+.card {
+  max-width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+}
+.search-bar {
+  margin-bottom: 20px;
+}
