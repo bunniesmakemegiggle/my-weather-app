@@ -10,7 +10,7 @@ h1 {
 }
 h2 {
   color: #8ea5eb;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 12px;
 }
 
@@ -48,6 +48,7 @@ ul {
 .col {
   text-align: center;
 }
+
 .date,
 .temperature {
   font-size: 16px;

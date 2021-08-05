@@ -5,10 +5,13 @@ function showCurrentWeather(response) {
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description;
   document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed * 3.6
+    response.data.wind.speed
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
 }
 
 function searchCity(city) {
@@ -37,7 +40,8 @@ function retrievePosition(event) {
   navigator.geolocation.getCurrentPosition(fetchCurrent);
 }
 
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let DaysOfWeek = [
     "Sunday",
     "Monday",
@@ -62,11 +66,6 @@ function formatDate(date) {
 
 let fetchCurrentData = document.querySelector("#fetch-location");
 fetchCurrentData.addEventListener("click", retrievePosition);
-
-let dateElement = document.querySelector("#date");
-let now = new Date();
-
-dateElement.innerHTML = formatDate(now);
 
 let cityForm = document.querySelector("#citySearched");
 cityForm.addEventListener("submit", handleSubmit);
