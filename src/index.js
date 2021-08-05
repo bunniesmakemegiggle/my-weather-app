@@ -3,7 +3,7 @@ function showCurrentWeather(response) {
     response.data.main.temp
   );
   document.querySelector("#description").innerHTML =
-    response.data.weather[0].main.toUpperCase();
+    response.data.weather[0].description;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed * 3.6
   );

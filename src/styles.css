@@ -39,8 +39,8 @@ ul {
 .current-weather {
   color: #8ea5eb;
   font-size: 18px;
-  font-weight: 700;
   line-height: 24px;
+  text-transform: capitalize;
 }
 .current-icon {
   vertical-align: top;
