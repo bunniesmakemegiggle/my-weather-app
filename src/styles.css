@@ -72,3 +72,11 @@ ul {
 .open-source {
   color: #f6378f;
 }
+.active {
+  color: #000;
+  cursor: default;
+  text-decoration: none;
+}
+.active:hover {
+  text-decoration: none;
+}
