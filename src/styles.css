@@ -49,9 +49,12 @@ ul {
   text-align: center;
 }
 
-.date,
-.temperature {
+.forecast-date {
   font-size: 16px;
+  line-height: 40px;
+}
+.forecast-temperature {
+  font-size: 14px;
   line-height: 40px;
 }
 .weather-app {
@@ -79,4 +82,7 @@ ul {
 }
 .active:hover {
   text-decoration: none;
+}
+.forecast-temperature-min {
+  opacity: 0.5;
 }
