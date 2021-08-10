@@ -1,10 +1,10 @@
 function getForecast(coordinates) {
   let apiKey = "a1217263a189bd405da8136f9b5059c4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 
-function showCurrentWeather(response) {
+function displayCurrentWeather(response) {
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -30,9 +30,9 @@ function showCurrentWeather(response) {
 
 function searchCity(city) {
   let apiKey = "a1217263a189bd405da8136f9b5059c4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
-  axios.get(apiUrl).then(showCurrentWeather);
+  axios.get(apiUrl).then(displayCurrentWeather);
 }
 
 function handleSubmit(event) {
@@ -45,7 +45,7 @@ function fetchCurrent(position) {
   let apiKey = "a1217263a189bd405da8136f9b5059c4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
-  axios.get(apiUrl).then(showCurrentWeather);
+  axios.get(apiUrl).then(displayCurrentWeather);
 }
 
 function retrievePosition(event) {
@@ -68,8 +68,8 @@ function formatDate(timestamp) {
   let dayOfWeek = DaysOfWeek[date.getDay()];
 
   let hour = date.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
+  if (hour > 12) {
+    hour = `${hour - 12}`;
   }
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -84,23 +84,6 @@ function formatDay(timestamp) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return days[day];
-}
-
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 function displayForecast(response) {
@@ -140,13 +123,5 @@ fetchCurrentData.addEventListener("click", retrievePosition);
 
 let cityForm = document.querySelector("#citySearched");
 cityForm.addEventListener("submit", handleSubmit);
-
-let celsiusTemperature = null;
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
 
 searchCity("New York");
