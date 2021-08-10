@@ -43,7 +43,7 @@ function handleSubmit(event) {
 
 function fetchCurrent(position) {
   let apiKey = "a1217263a189bd405da8136f9b5059c4";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=imperial`;
 
   axios.get(apiUrl).then(displayCurrentWeather);
 }
