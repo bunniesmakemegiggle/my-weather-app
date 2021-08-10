@@ -78,6 +78,14 @@ function formatDate(timestamp) {
   return `${dayOfWeek} ${hour}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayFahrenheitTemp(event) {
   event.preventDefault();
   celsiusLink.classList.remove("active");
@@ -96,25 +104,31 @@ function displayCelsiusTemp(event) {
 }
 
 function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class = "row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `   
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `   
             <div class="col-2">
-              <div class="forecast-date">${day}</div>
-              <div class="icon-cloud">
-                <img src="images/cloud.png" alt="cloud" width="60px" />
-              </div>
+              <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
+               <img src="images/${
+                 forecastDay.weather[0].icon
+               }.png" alt="" id="future-icon" width="60px" />
               <div class="forecast-temperature">
-                <span class="forecast-temperature-max">62°</span>
-                <span class="forecast-temperature-min">50°</span>
+                <span class="forecast-temperature-max">${Math.round(
+                  forecastDay.temp.max
+                )}°</span>
+                <span class="forecast-temperature-min">${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
               </div>
             `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
